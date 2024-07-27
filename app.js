@@ -16,7 +16,35 @@ const generatorTextRouter = require("./routes/generate-text");
 const sentimentStatementRouter = require("./routes/sentiment-statement");
 
 const app = express();
-const router = express.Router();
+
+// custom handler to ignore excess requests
+const ignoreExcessRequests = (req, res, next) => {
+  const key = req.ip;
+  if (!req.rateLimit) {
+    req.rateLimit = {
+      [key]: { count: 0, timestamp: Date.now() },
+    };
+  }
+
+  const rate = req.rateLimit[key];
+  const currentTime = Date.now();
+  const windowMs = 5 * 1000; // 5 sec
+  const maxRequests = 2; // max 2 requests per windowMs
+
+  if (currentTime - rate.timestamp > windowMs) {
+    rate.count = 0;
+    rate.timestamp = currentTime;
+  }
+
+  rate.count += 1;
+
+  if (rate.count > maxRequests) {
+    // Ignore the request by not calling next()
+    return;
+  }
+
+  next();
+};
 
 // view engine setup
 app.use(logger("dev"));
