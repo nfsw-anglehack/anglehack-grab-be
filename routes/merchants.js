@@ -17,7 +17,7 @@ router.get("/:id", (req, res) => {
 
   const query = `
       SELECT m.id AS merchant_id, m.name AS merchant_name, m.rating, m.address, m.image_url, m.banner_url, m.delivery_time, m.delivery_price,
-             p.id AS product_id, p.name AS product_name, p.original_price, p.price
+             p.id AS product_id, p.name AS product_name, p.original_price, p.price, p.image_url AS product_image_url
       FROM Merchants m
       LEFT JOIN Products p ON m.id = p.merchant_id
       WHERE m.id = ?
@@ -50,7 +50,7 @@ router.get("/:id", (req, res) => {
           id: row.product_id,
           name: row.product_name,
           original_price: row.original_price,
-          image_url: row.image_url,
+          image_url: row.product_image_url,
           price: row.price,
         });
       }
