@@ -4,7 +4,14 @@ const db = require("../database");
 
 // Get all drivers
 router.get("/", (req, res) => {
-  db.all("SELECT * FROM Drivers", [], (err, rows) => {
+  const query = `
+    SELECT Drivers.*, 
+           IFNULL(AVG(Reviews.rating), 0) AS rating
+    FROM Drivers
+    LEFT JOIN Reviews ON Drivers.id = Reviews.driver_id
+    GROUP BY Drivers.id
+  `;
+  db.all(query, [], (err, rows) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -15,7 +22,15 @@ router.get("/", (req, res) => {
 // Get a single driver by id
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  db.get("SELECT * FROM Drivers WHERE id = ?", [id], (err, row) => {
+  const query = `
+    SELECT Drivers.*, 
+           IFNULL(AVG(Reviews.rating), 0) AS rating
+    FROM Drivers
+    LEFT JOIN Reviews ON Drivers.id = Reviews.driver_id
+    WHERE Drivers.id = ?
+    GROUP BY Drivers.id
+  `;
+  db.get(query, [id], (err, row) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }

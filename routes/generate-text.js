@@ -21,13 +21,23 @@ router.post("/", async (req, res) => {
 
   try {
     const reviews = await db.dbAll(
-      "SELECT * FROM Reviews as r WHERE r.driver_id = ?",
+      "SELECT * FROM Reviews WHERE driver_id = ?",
       [driver_id]
     );
 
-    const driver = await db.dbAll("SELECT * FROM Drivers as d WHERE d.id = ?", [
-      driver_id,
-    ]);
+    const driverQuery = `
+      SELECT Drivers.*, 
+             IFNULL(AVG(Reviews.rating), 0) AS rating
+      FROM Drivers
+      LEFT JOIN Reviews ON Drivers.id = Reviews.driver_id
+      WHERE Drivers.id = ?
+      GROUP BY Drivers.id
+    `;
+    const driver = await db.dbAll(driverQuery, [driver_id]);
+
+    if (!driver.length) {
+      return res.status(404).json({ error: "Driver not found" });
+    }
 
     const prompt = generatePrompt(driver[0], reviews);
 

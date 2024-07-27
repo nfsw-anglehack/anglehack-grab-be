@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../database");
+const { dbAll } = require("../utils/db");
 
 // Get all orders
 router.get("/", (req, res) => {
@@ -13,17 +14,28 @@ router.get("/", (req, res) => {
 });
 
 // Get a single order by id
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  db.get("SELECT * FROM Orders WHERE id = ?", [id], (err, row) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (!row) {
+  try {
+    const order = await dbAll("SELECT * FROM Orders WHERE id = ?", [id]);
+
+    if (!order) {
       return res.status(404).json({ error: "Order not found" });
     }
-    res.json({ order: row });
-  });
+
+    const merchant = await dbAll("SELECT * FROM Merchants WHERE id = ?", [
+      order[0].merchant_id,
+    ]);
+
+    if (!merchant) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    res.json({
+      order: { ...order[0], arrival_time: merchant[0].delivery_time },
+    });
+  } catch {
+    return res.status(500).json({ error: err.message });
+  }
 });
 
 // Create a new order

@@ -10,7 +10,7 @@ const merchants = [
       "https://rinaldimunir.wordpress.com/wp-content/uploads/2011/05/rm-sederhana-di-padang.jpg",
     banner_url:
       "https://awsimages.detik.net.id/community/media/visual/2017/09/12/cb9b74a0-6638-4916-8961-5a8891e66743_43.jpg?w=1200",
-    delivery_time: 30,
+    delivery_time: 8,
     delivery_price: 10000,
   },
   {
@@ -21,7 +21,7 @@ const merchants = [
       "https://img.restaurantguru.com/c0b9-Restaurant-RM-Padang-Cita-Rasa-interior.jpg",
     banner_url:
       "https://www.saribundo.biz/wp-content/uploads/2022/11/Inilah-Alasan-Kedai-Nasi-Asal-Sumbar-Disebut-Rumah-Makan-Padang.jpeg",
-    delivery_time: 45,
+    delivery_time: 5,
     delivery_price: 15000,
   },
   {
@@ -32,7 +32,7 @@ const merchants = [
       "https://th.bing.com/th/id/OIP.qG2aLy1D35fa3ty2nbsVzAHaJ4?rs=1&pid=ImgDetMain",
     banner_url:
       "https://3.bp.blogspot.com/-Fn12LVnr_II/WYk8inJVCJI/AAAAAAAABvE/3nPUyoRN_Asm-SyD8Tr6SfzdqyuibDA3QCEwYBhgL/s1600/Kedai%2Bkopi%2Bnusantara%2Bcirebon%2B2.jpeg",
-    delivery_time: 20,
+    delivery_time: 4,
     delivery_price: 5000,
   },
 ];
