@@ -1,0 +1,20 @@
+{
+  "name": "anglehack-grab-be",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "./setup-and-populate.sh",
+    "clean": "rm -f database.db",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Zeliq Urian",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.19.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7"
+  }
+}
