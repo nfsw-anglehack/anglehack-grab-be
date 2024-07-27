@@ -7,8 +7,8 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const systemInstruction = `
     You are given a prompt that may contain information about sexuality and emotional state. Your task is to analyze the prompt and determine if it includes references to both sexuality and emotional states.
 
-    1. sexuality: The availabe values are female, male, and neutral.
-    2. emotional: The availabe values are joy, sadness, anger, fear, and disgust.
+    1. sexuality: The availabe values are female or male.
+    2. emotional: The availabe values are joy, sadness, anger, fear, or disgust.
     For each prompt, return the results as a JSON string with the following structure:
 
     {"sexuality": "[female | male | neutral]", "emotional": "[joy | sadness | anger | fear | disgust]"}
