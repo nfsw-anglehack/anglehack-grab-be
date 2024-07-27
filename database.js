@@ -67,6 +67,16 @@ const db = new sqlite3.Database(dbPath, (err) => {
       FOREIGN KEY (merchant_id) REFERENCES Merchants(id),
       FOREIGN KEY (driver_id) REFERENCES Drivers(id)
     );`);
+
+    // Create Stickers table
+    db.run(`
+        CREATE TABLE IF NOT EXISTS Stickers (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          image_url TEXT,
+          sexuality TEXT,
+          emotional TEXT
+        )
+      `);
   }
 });
 

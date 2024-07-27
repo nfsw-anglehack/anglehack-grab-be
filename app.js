@@ -13,6 +13,7 @@ const ordersRouter = require("./routes/orders");
 
 // Gen AI
 const generatorTextRouter = require("./routes/generate-text");
+const sentimentStatementRouter = require("./routes/sentiment-statement");
 
 const app = express();
 const router = express.Router();
@@ -33,6 +34,7 @@ app.use("/orders", ordersRouter);
 
 // Gen AI
 app.use("/generate-text", generatorTextRouter);
+app.use("/sentiment-statement", sentimentStatementRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

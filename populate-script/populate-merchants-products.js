@@ -4,7 +4,7 @@ const db = new sqlite3.Database("./database.db"); // Adjust the path to your SQL
 const merchants = [
   {
     name: "Warung Makan Sederhana",
-    rating: 4.2,
+    rating: 4.5,
     address: "Jl. Raya Jakarta No. 10, Jakarta, Indonesia",
     image_url:
       "https://rinaldimunir.wordpress.com/wp-content/uploads/2011/05/rm-sederhana-di-padang.jpg",
