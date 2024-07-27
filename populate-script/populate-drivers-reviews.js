@@ -26,8 +26,8 @@ db.serialize(() => {
     ],
   ];
 
-  drivers.forEach(([name, vehicle, vehicle_number]) => {
-    db.run(insertDriverStmt, [name, vehicle, vehicle_number]);
+  drivers.forEach(([name, image_url, vehicle, vehicle_number]) => {
+    db.run(insertDriverStmt, [name, image_url, vehicle, vehicle_number]);
   });
 
   // Insert data into Reviews table
@@ -54,11 +54,11 @@ db.serialize(() => {
   // Reviews for Susi Pudjiastuti (id 2)
   const reviewsSusi = [
     [
-      "Driver arrived on time and the ride was smooth, but the car could have been cleaner.",
+      "Driver arrived on time and the ride was smooth, but the vehicle could have been cleaner.",
       3,
     ],
     [
-      "The driver was courteous and the car was comfortable, though a bit noisy.",
+      "The driver was courteous and the vehicle was comfortable, though a bit noisy.",
       4,
     ],
     [
@@ -70,7 +70,7 @@ db.serialize(() => {
       3,
     ],
     [
-      "The driver was friendly and the car was in decent shape, though the air conditioning was not very effective.",
+      "The driver was friendly and the vehicle was in decent shape, though the air conditioning was not very effective.",
       4,
     ],
     [
@@ -78,7 +78,7 @@ db.serialize(() => {
       3,
     ],
     [
-      "The driver was punctual and the car was fairly clean, though the ride could have been smoother.",
+      "The driver was punctual and the vehicle was fairly clean, though the ride could have been smoother.",
       3,
     ],
     [
@@ -90,7 +90,7 @@ db.serialize(() => {
       4,
     ],
     [
-      "The driver was professional and the journey was satisfactory, though the car's maintenance could be improved.",
+      "The driver was professional and the journey was satisfactory, though the vehicle's maintenance could be improved.",
       3,
     ],
   ];
@@ -101,15 +101,15 @@ db.serialize(() => {
 
   // Reviews for Ahmad Dhani (id 3)
   const reviewsAhmad = [
-    ["Driver was late and the car was not clean.", 1],
-    ["The car had a strange odor and the driver took a long route.", 2],
+    ["Driver was late and the vehicle was not clean.", 1],
+    ["The vehicle had a strange odor and the driver took a long route.", 2],
     ["Unfriendly driver and uncomfortable seats.", 1],
     ["Driver was rude and did not follow instructions.", 1],
-    ["Car was not well-maintained and the ride was bumpy.", 2],
+    ["vehicle was not well-maintained and the ride was bumpy.", 2],
     ["The driver drove too fast and recklessly.", 1],
-    ["Driver was not punctual and the car was noisy.", 2],
+    ["Driver was not punctual and the vehicle was noisy.", 2],
     ["Unpleasant experience due to the driver's behavior.", 1],
-    ["The car's air conditioning was not working well.", 2],
+    ["The vehicle's air conditioning was not working well.", 2],
     ["Driver took unnecessary detours, making the trip longer.", 1],
   ];
 

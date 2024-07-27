@@ -34,6 +34,8 @@ const systemInstruction = `
     keep in mind to response with a fluent english, only with plain text without markdown symbol, and you can make more or less than 40 words but make it as close as possible to 40 words.
     
     Response should be plain text, around 40 words, coherent and cohesive to feedback, and align with the given template. The person is a motorcycle driver for a company (context only). Use fluent English, no company names, and no markdown symbols. Respond in plain text only.
+
+    But if you think the rating is to low and the feedbacks are negative, just response 'RATING TOO LOW'
 `;
 
 const model = genAI.getGenerativeModel({
@@ -45,7 +47,7 @@ async function generateStory(prompt) {
   const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
-  return text;
+  return text.replace(/[\*\n]/g, "").trim();
 }
 
 module.exports = {
