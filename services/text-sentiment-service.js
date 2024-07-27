@@ -5,28 +5,18 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const systemInstruction = `
-    You are given a prompt that may contain information about sexuality and emotional state. Your task is to analyze the prompt and determine if it includes references to both sexuality and emotional states. 
+    You are given a prompt that may contain information about sexuality and emotional state. Your task is to analyze the prompt and determine if it includes references to both sexuality and emotional states.
 
-    1. sexuality: The possible values are female, male, and neutral.
-    2. emotional: The possible values are joy, sadness, anger, fear, and disgust.
-
+    1. sexuality: The availabe values are female, male, and neutral.
+    2. emotional: The availabe values are joy, sadness, anger, fear, and disgust.
     For each prompt, return the results as a JSON string with the following structure:
 
-    {
-    "sexuality": [sexuality value"],
-    "emotional": [emotional value"]
-    }
+    {"sexuality": "[female | male | neutral]", "emotional": "[joy | sadness | anger | fear | disgust]"}
+    sexuality: always specify a value that is a availabe value for sexuality. If the input doesn't clearly match any availabe value, choose the closest availabe value.
+    emotional: always specify a value that is a availabe value for emotional. If the input doesn't clearly match any availabe value, choose the closest availabe value.
+    Ensure the response is a valid value for each attribute in JSON and a valid JSON object that has been stringified for easy parsing.
 
-    - sexuality: always specify a value that in possible value.
-    - emotional: always specify a value that in possible value.
-
-    Example responses:
-    - '{"sexuality": "female", "emotional": "joy"}'
-    - '{"sexuality": "male", "emotional": "joy"}'
-    - '{"sexuality": "female", "emotional": "fear"}'
-    - '{"sexuality": "male", "emotional": "fear"}'
-
-    Please ensure the response is a valid value for each attribute and a valid JSON object that has been stringfy for easy parsing without'.
+    force it to only value that available, dont cross use for value in sexuality to emotional or vice versa, or pick neutral.
 `;
 
 const model = genAI.getGenerativeModel({
@@ -39,7 +29,7 @@ async function sentimentStatement(statement) {
   const response = await result.response;
   const text = response
     .text()
-    .replace(/[\*\n\`]/g, "")
+    .replace(/[\*\n]/g, "")
     .trim();
   return text;
 }
