@@ -40,6 +40,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     // Create Drivers table
     db.run(`CREATE TABLE IF NOT EXISTS Drivers (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      image_url TEXT,
       name TEXT,
       vehicle TEXT,
       vehicle_number INTEGER

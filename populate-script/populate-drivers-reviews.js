@@ -3,12 +3,27 @@ const db = new sqlite3.Database("./database.db"); // Adjust the path to your SQL
 
 db.serialize(() => {
   // Insert data into Drivers table
-  const insertDriverStmt = `INSERT INTO Drivers (name, vehicle, vehicle_number) VALUES (?, ?, ?)`;
+  const insertDriverStmt = `INSERT INTO Drivers (name, image_url, vehicle, vehicle_number) VALUES (?, ?, ?, ?)`;
 
   const drivers = [
-    ["Joko Widodo", "Honda PCX", "B1234XYZ"],
-    ["Susi Pudjiastuti", "Yamaha NMAX", "B5678ABC"],
-    ["Ahmad Dhani", "Suzuki Spin", "B9101DEF"],
+    [
+      "Joko Widodo",
+      "https://th.bing.com/th/id/OIP.AuOxWGGg52MnUkKD-jNqRwAAAA?rs=1&pid=ImgDetMain",
+      "Honda PCX",
+      "B1234XYZ",
+    ],
+    [
+      "Susi Pudjiastuti",
+      "https://asset.kompas.com/crops/p0pl-7ARfJVd3jy_Ey5MjM9uSLU=/190x0:1123x622/750x500/data/photo/2020/04/30/5eaa797abbedd.jpeg",
+      "Yamaha NMAX",
+      "B5678ABC",
+    ],
+    [
+      "Ahmad Dhani",
+      "https://analisa.id/wp-content/uploads/2022/08/driver-grab.jpg",
+      "Suzuki Spin",
+      "B9101DEF",
+    ],
   ];
 
   drivers.forEach(([name, vehicle, vehicle_number]) => {

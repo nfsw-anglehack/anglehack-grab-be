@@ -28,10 +28,10 @@ router.get("/:id", (req, res) => {
 
 // Create a new driver
 router.post("/", (req, res) => {
-  const { name, vehicle, vehicle_number } = req.body;
-  const query = `INSERT INTO Drivers (name, vehicle, vehicle_number) 
-                 VALUES (?, ?, ?)`;
-  db.run(query, [name, vehicle, vehicle_number], function (err) {
+  const { name, image_url, vehicle, vehicle_number } = req.body;
+  const query = `INSERT INTO Drivers (name, image_url, vehicle, vehicle_number) 
+                 VALUES (?, ?, ?, ?)`;
+  db.run(query, [name, image_url, vehicle, vehicle_number], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -42,10 +42,10 @@ router.post("/", (req, res) => {
 // Update a driver
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { name, vehicle, vehicle_number } = req.body;
-  const query = `UPDATE Drivers SET name = ?, vehicle = ?, vehicle_number = ? 
+  const { name, image_url, vehicle, vehicle_number } = req.body;
+  const query = `UPDATE Drivers SET name = ?, image_url = ?, vehicle = ?, vehicle_number = ? 
                  WHERE id = ?`;
-  db.run(query, [name, vehicle, vehicle_number, id], function (err) {
+  db.run(query, [name, image_url, vehicle, vehicle_number, id], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
