@@ -11,6 +11,9 @@ const driversRouter = require("./routes/drivers");
 const reviewsRouter = require("./routes/reviews");
 const ordersRouter = require("./routes/orders");
 
+// Gen AI
+const generatorTextRouter = require("./routes/generate-text");
+
 const app = express();
 const router = express.Router();
 
@@ -27,6 +30,9 @@ app.use("/products", productsRouter);
 app.use("/drivers", driversRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/orders", ordersRouter);
+
+// Gen AI
+app.use("/generate-text", generatorTextRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

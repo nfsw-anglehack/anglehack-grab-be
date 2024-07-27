@@ -5,3 +5,4 @@
 - [Order Contract](./contract/order-contract.md)
 - [Product Contract](./contract/product-contract.md)
 - [Review Contract](./contract/review-contract.md)
+- [Generate Text Contract](./contract/generate-text-contract.md)
